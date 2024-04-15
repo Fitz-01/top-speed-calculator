@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Speed Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Top Speed Calculator</h1>
+
+    <label for="width">Tire Width (mm):</label>
+    <input type="text" id="width" placeholder="Enter tire width">
+
+    <label for="ratio">Aspect Ratio:</label>
+    <input type="text" id="ratio" placeholder="Enter aspect ratio">
+
+    <label for="diameter">Rim Diameter (in):</label>
+    <input type="text" id="diameter" placeholder="Enter rim diameter">
+
+    <label for="rpm">Engine RPM:</label>
+    <input type="text" id="rpm" placeholder="Enter RPM">
+
+    <label for="gear_ratio">Gear Ratio:</label>
+    <input type="text" id="gear_ratio" placeholder="Enter gear ratio">
+
+    <label for="final_drive">Final Drive:</label>
+    <input type="text" id="final_drive" placeholder="Enter final drive">
+
+    <button onclick="calculateTopSpeed()">Calculate Top Speed</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateTopSpeed() {
+      const width = parseFloat(document.getElementById('width').value);
+      const ratio = parseFloat(document.getElementById('ratio').value);
+      const diameter = parseFloat(document.getElementById('diameter').value);
+      const rpm = parseFloat(document.getElementById('rpm').value);
+      const gearRatio = parseFloat(document.getElementById('gear_ratio').value);
+      const finalDrive = parseFloat(document.getElementById('final_drive').value);
+
+      const tireDiameter = (((width / 25.4) * (ratio / 100) * 2) + diameter);
+      const topSpeed = (rpm * tireDiameter * 3.14159265359) / (finalDrive * gearRatio * 1056);
+
+      document.getElementById('result').innerHTML = `Top Speed: ~${topSpeed.toFixed(0)} mph`;
+    }
+  </script>
+</body>
+
+</html>
